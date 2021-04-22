@@ -1,30 +1,61 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view />
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import "@/assets/sass/button.scss";
+// @import "@/assets/sass/font.scss";
+
+// @import "@/vendor/css/normalize.min.css";
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
 }
 
-#nav {
-  padding: 30px;
+button:focus {
+  outline: none;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.display-none {
+  display: none;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-Regular.ttf');
+  src: local('Inter Regular'), local('Inter-Regular'),
+      url('./assets/fonts/Inter-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-Medium.ttf');
+  src: local('Inter Medium'), local('Inter-Medium'),
+      url('./assets/fonts/Inter-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-SemiBold.ttf');
+  src: local('Inter Semi Bold'), local('Inter-SemiBold'),
+      url('./assets/fonts/Inter-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
 }
 </style>
+
+
+
