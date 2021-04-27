@@ -1,9 +1,10 @@
 <template>
   <section class="about">
     <div class="container">
-      <div class="about__one tabs"></div>
-
-      <div class="about__parallax-container">
+      
+      <Tabs />
+      
+      <Parallax>
         <div class="about__two">
           <div class="about__image">
             <img
@@ -72,7 +73,9 @@
             </div>
           </div>
         </div>
+      </Parallax>
 
+      <Parallax>
         <div class="about__three">
           <div class="about__content">
             <h3>Impress your visitors with a clean interface.</h3>
@@ -141,32 +144,35 @@
             />
           </div>
         </div>
-      </div>
+      </Parallax>
     </div>
   </section>
 </template>
+
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+import Tabs from "./tabs/Tabs.vue";
+import Parallax from "./Parallax.vue";
+
+@Options({
+  name: "About",
+  components: {
+    Tabs,
+    Parallax
+  }
+})
+export default class About extends Vue {}
+</script>
 
 <style lang="scss" scoped>
 .about {
   padding-top: 90px;
 
-  &__one {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 120px 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    .about__content {
-      max-width: 44%;
-    }
-  }
-
   &__content {
     max-width: 480px;
     padding-top: 23px;
     padding-bottom: 44px;
+
     hr {
       margin-top: 25px;
       size: 1px;
@@ -199,10 +205,6 @@
     justify-content: center;
     width: 56%;
     position: relative;
-  }
-
-  &__tabs {
-    padding-bottom: 10px;
   }
 
   &__two {
@@ -315,25 +317,3 @@
   }
 }
 </style>
-
-<script lang="ts">
-import { Vue } from "vue-class-component";
-// import Tabs from "./tabs/Tabs.vue";
-// import Parallax from "./parallax/Parallax.vue";
-
-export default class About extends Vue {
-
-  // render() {
-  //   this.initChild();
-  // }
-
-  // initChild() {
-  //     const tabs = new Tabs('.tabs');
-  //     const parallax = new Parallax('.about__parallax-container');
-
-  //     tabs.render();
-  //     tabs.init();
-  //     parallax.init();
-  // }
-}
-</script>

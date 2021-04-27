@@ -10,7 +10,7 @@
       <div class="get-email__input-wrapper">
         <input type="email" class="get-email__input">
 
-        <input type="submit" class="get-email__submit">
+        <input type="submit" class="get-email__submit" value="">
       </div>
     </form>
   </section>

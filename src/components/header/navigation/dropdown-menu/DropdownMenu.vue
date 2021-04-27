@@ -28,6 +28,7 @@
 import { Options, Vue } from "vue-class-component";
 
 @Options({
+  name: "DropdownMenu",
   props: {
     menuItem: {
       type: Object,
@@ -41,7 +42,6 @@ export default class DropdownMenu extends Vue {
   public menuItem!: { id: string; items: any[]; links?: any[] };
   public isHidden!: boolean;
   public isFaded!: boolean;
-  
 
   public get id(): string {
     return this.menuItem.id;

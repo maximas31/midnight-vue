@@ -16,6 +16,12 @@
   </section>
 </template>
 
+<script lang="ts">
+import { Vue } from "vue-class-component";
+
+export default class GetStarted extends Vue {}
+</script>
+
 <style lang="scss" scoped>
 .get-started {
   padding: 120px 0;
@@ -57,9 +63,3 @@
   }
 }
 </style>
-
-<script lang="ts">
-import { Vue } from "vue-class-component";
-
-export default class GetStarted extends Vue {}
-</script>

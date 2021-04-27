@@ -2,14 +2,13 @@
   <section class="testimonial">
     <div class="container">
       <div class="testimonial__wrapper">
-        <div class="testimonial__video">
-          <a href="#">
-            <img
-              src="icons/play-icon.svg"
-              alt="play-icon"
-              class="testimonial__play-button"
-            />
-          </a>
+        <div class="testimonial__video" @click="showModal = true">
+          <img
+            src="icons/play-icon.svg"
+            alt="play-icon"
+            class="testimonial__play-button"
+          />
+
           <img
             src="img/Testimonial_image-p-1080.jpeg"
             alt="testimonial-cover"
@@ -26,14 +25,34 @@
               <span>No One Ever</span><br />CEO & Founder
             </div>
             <div class="testimonial__logo">
-              <img src="img/small_logo1.png" alt="small-logo1" />
+              <img src="img/small_logo1.png" alt="small-logo1"/>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <Modal v-show="showModal" :show-modal="showModal" @closeModal="onClose" />
 </template>
+
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+import Modal from "./Modal.vue";
+
+@Options({
+  name: "Testimonial",
+  components: {
+    Modal
+  }
+})
+export default class Testimonial extends Vue {
+  public showModal = false;
+
+  onClose() {
+    this.showModal = false;
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .testimonial {
@@ -51,6 +70,7 @@
     max-width: 627px;
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
 
     &:hover .testimonial__play-button {
       transform: scale(1.05);
@@ -110,45 +130,3 @@
   }
 }
 </style>
-
-<script lang="ts">
-import { Vue } from "vue-class-component";
-
-export default class Testimonial extends Vue {
-  // rootNode
-
-  // constructor(rootSelector) {
-  //   this.rootNode = document.querySelector(rootSelector);
-  // }
-
-  // render() {
-  //   const html = `
-  //   <div class="container">
-  //     <div class="testimonial__wrapper">
-  //       <div class="testimonial__video">
-  //         <a href="#">
-  //           <img src="icons/play-icon.svg" alt="play-icon" class="testimonial__play-button">
-  //         </a>
-  //         <img src="img/Testimonial_image-p-1080.jpeg" alt="testimonial-cover" class="testimonial__video-image">
-  //       </div>
-  //       <div class="testimonial__content">
-  //         <div class="testimonial__text">
-  //           "The best money I have spent in my life. I saw a 1200% increase in my conversion rates and
-  //           doubled my revenue in just three hours”.
-  //         </div>
-  //         <div class="testimonial__author-wrapper">
-  //           <div class="testimonial__author">
-  //             <span>No One Ever</span><br>CEO & Founder
-  //           </div>
-  //           <div class="testimonial__logo">
-  //             <img src="img/small_logo1.png" alt="small-logo1">
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>`
-
-  //   this.rootNode.innerHTML = html;
-  // }
-}
-</script>
