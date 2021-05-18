@@ -1,9 +1,8 @@
 <template>
   <section class="about">
     <div class="container">
-      
       <Tabs />
-      
+
       <Parallax>
         <div class="about__two">
           <div class="about__image">
@@ -158,8 +157,8 @@ import Parallax from "./Parallax.vue";
   name: "About",
   components: {
     Tabs,
-    Parallax
-  }
+    Parallax,
+  },
 })
 export default class About extends Vue {}
 </script>
@@ -176,7 +175,7 @@ export default class About extends Vue {}
     hr {
       margin-top: 25px;
       size: 1px;
-      opacity: .4;
+      opacity: 0.4;
       color: rgba(153, 153, 153, 0);
     }
   }
@@ -263,12 +262,12 @@ export default class About extends Vue {}
     margin-top: 20px;
     align-items: flex-start;
   }
-  
+
   &__testimonial-small-logo {
     max-width: 110px;
     margin-top: 5px;
   }
-  
+
   &__testimonial-small-text {
     margin-left: 20px;
     color: #57586e;
@@ -297,14 +296,14 @@ export default class About extends Vue {}
     top: 720px;
     right: 193px;
   }
-  
+
   &__background-img-3 {
     position: absolute;
     width: 350px;
     top: -1220px;
     right: -40px;
   }
-  
+
   &__background-img-4 {
     position: absolute;
     width: 350px;

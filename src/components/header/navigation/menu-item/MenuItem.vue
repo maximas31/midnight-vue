@@ -3,7 +3,7 @@
     <div>{{ item.name }}</div>
 
     <div class="navigation__icon" v-if="children.length">
-      <img src="img/dropdown-arrow.png" alt="nav-icon">
+      <img src="img/dropdown-arrow.png" alt="nav-icon" />
     </div>
 
     <slot />
@@ -18,9 +18,9 @@ import { Options, Vue } from "vue-class-component";
   props: {
     item: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 export default class MenuItem extends Vue {
   public item!: { id: string; items: any[]; links?: any[] };
@@ -41,22 +41,23 @@ export default class MenuItem extends Vue {
     display: flex;
     cursor: pointer;
     transition: all 200ms ease;
-  
+
     &:hover {
       color: #0047f0;
-  
+
       .navigation__icon {
         transform: rotate(180deg);
-        filter: invert(16%) sepia(100%) saturate(3212%) hue-rotate(222deg) brightness(99%) contrast(111%);
+        filter: invert(16%) sepia(100%) saturate(3212%) hue-rotate(222deg)
+          brightness(99%) contrast(111%);
       }
     }
   }
-  
+
   &__icon {
     margin-left: 4px;
     padding: 0 3px;
     transition: all 300ms;
-  
+
     img {
       width: 10px;
     }

@@ -1,23 +1,31 @@
 <template>
-  <div class="modal__container" @click.self='closeModal'>
-      <div class="modal__content">
-        <iframe v-if="showModal"
-          width="890"
-          height="500"
+  <div class="modal__container" @click="onCloseClicked">
+    <div class="modal__content">
+      <div class="modal__video">
+        <iframe
+          width="950"
+          height="550"
           src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
-        >
-        </iframe>
-
-        <button type="button" class="modal__close" 
-          @click='closeModal'> X 
-        </button>
+        />
       </div>
-  </div>
 
+      <button type="button" class="modal__close" @click="onCloseClicked">
+        X
+      </button>
+    </div>
+    <div class="modal__surprise">
+      <img
+        v-for="pepe in pepes"
+        :key="pepe"
+        src="../../../public/img/surprise.gif"
+        :alt="pepe"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,15 +33,18 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   name: "Modal",
-  props: {
-    showModal: Boolean
-  }
 })
 export default class Modal extends Vue {
-  // showModal = false;
+  public pepes: any[] = [];
 
-  closeModal() {
-    this.$emit('closeModal')
+  onCloseClicked() {
+    this.$emit("close-clicked");
+  }
+
+  mounted() {
+    for (let pepe = 0; pepe < 300; pepe++) {
+      this.pepes.push(pepe);
+    }
   }
 }
 </script>
@@ -55,7 +66,6 @@ export default class Modal extends Vue {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
 
     &:before,
     &:after {
@@ -87,33 +97,25 @@ export default class Modal extends Vue {
     &:after {
       filter: blur(50px);
     }
+  }
+
+  &__video {
+    overflow: hidden;
+    width: 680px;
+    height: 495px;
+    border-radius: 25px;
+    background: linear-gradient(0deg, #000, #272727);
 
     iframe {
-      border-radius: 25px;
-      background: linear-gradient(0deg, #000, #272727);
+      transform: translate(-14%, -8%);
     }
-  }
-
-  @keyframes steam {
-    0% {
-      background-position: 0 0;
-    }
-    50% {
-      background-position: 400% 0;
-    }
-    100% {
-      background-position: 0 0;
-    }
-  }
-
-  .block:after {
-    filter: blur(50px);
   }
 
   &__close {
     position: absolute;
     background: linear-gradient(0deg, #000, #272727);
-    right: -10%;
+    right: -15%;
+    top: 0;
     border-radius: 100%;
     font-size: 25px;
     color: black;
@@ -123,7 +125,8 @@ export default class Modal extends Vue {
     height: 50px;
     cursor: pointer;
 
-    &:before, &:after {
+    &:before,
+    &:after {
       border-radius: 25px;
       content: "";
       position: absolute;
@@ -151,6 +154,31 @@ export default class Modal extends Vue {
 
     &:after {
       filter: blur(50px);
+    }
+  }
+
+  @keyframes steam {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+  &__surprise {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: flex-end;
+    height: 140px;
+    z-index: -1;
+
+    img {
+      height: 80px;
     }
   }
 }

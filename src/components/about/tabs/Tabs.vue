@@ -10,14 +10,17 @@
         </div>
       </div>
 
-      <div class="tabs__tabs" ref="tabs__container">
+      <div class="tabs__tabs" ref="container">
         <TabItem
           v-for="(tabItem, index) in tabItems"
           :key="tabItem.title"
           :item="tabItem"
-          @click="activateTab(index); disableTabSwitcher();"
-          @mouseover="pauseTabSwitcher"
-          @mouseleave="startTabSwitcher"
+          @click="
+            activateTab(index);
+            isSlideshowEnabled = false;
+          "
+          @mouseover="pauseSlideshow"
+          @mouseleave="startSlideshow"
         />
       </div>
 
@@ -50,7 +53,7 @@ import TabItem from "./TabItem.vue";
 export default class Tabs extends Vue {
   public activeTabIndex = 0;
   public tabTimer: number | undefined;
-  public tabSwitcherState = false;
+  public isSlideshowEnabled = false;
 
   public tabItems: any[] = [
     {
@@ -96,11 +99,38 @@ export default class Tabs extends Vue {
   ];
 
   public get tabsContainer(): Element | null {
-    return this.$refs.tabs__container as Element || null;
+    return (this.$refs.container as Element) || null;
   }
 
   mounted() {
-    this.observeElementOnViewport()
+    this.observeTabsOnViewport();
+  }
+
+  public observeTabsOnViewport() {
+    if (!this.tabsContainer) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.isSlideshowEnabled = true;
+            this.startSlideshow();
+          }
+
+          if (!entry.isIntersecting) {
+            this.pauseSlideshow();
+            this.isSlideshowEnabled = false;
+          }
+        });
+      },
+      {
+        threshold: 0,
+      }
+    );
+
+    observer.observe(this.tabsContainer);
   }
 
   public activateTab(index = 0) {
@@ -111,60 +141,28 @@ export default class Tabs extends Vue {
     this.tabItems[this.activeTabIndex].isActive = true;
   }
 
-  public startTabSwitcher() {
-    if(!this.tabSwitcherState) {
-      return
-    }
-
-    this.tabTimer = setInterval(this.activateNextTab, 1000);
-  }
-
-  public activateNextTab() {
-    this.tabItems[this.activeTabIndex].isActive = false;
-
-    this.activeTabIndex = this.activeTabIndex + 1;
-
-    if (this.activeTabIndex === this.tabItems.length ) {
-      this.activeTabIndex = 0;
-    }
-
-    this.tabItems[this.activeTabIndex].isActive = true;
-  }
-
-  public pauseTabSwitcher() {
-    if(!this.tabSwitcherState) {
-      return
-    }
-
-    clearInterval(this.tabTimer)
-  }
-
-  public disableTabSwitcher() {
-    this.tabSwitcherState = false;
-  }
-
-  public observeElementOnViewport() {
-    if (!this.tabsContainer) {
+  public startSlideshow() {
+    if (!this.isSlideshowEnabled) {
       return;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.tabSwitcherState = true;
-          this.startTabSwitcher();
-        }
+    this.tabTimer = setInterval(() => {
+      let index = this.activeTabIndex + 1;
 
-        if (!entry.isIntersecting) {
-          this.pauseTabSwitcher();
-          this.tabSwitcherState = false;
-        }
-      });
-    }, {
-      threshold: 0
-    });
+      if (index >= this.tabItems.length) {
+        index = 0;
+      }
 
-    observer.observe(this.tabsContainer);
+      this.activateTab(index);
+    }, 1000);
+  }
+
+  public pauseSlideshow() {
+    if (!this.isSlideshowEnabled) {
+      return;
+    }
+
+    clearInterval(this.tabTimer);
   }
 }
 </script>
@@ -222,7 +220,7 @@ export default class Tabs extends Vue {
   }
 
   &__tabs {
-    padding-bottom: 10px;
+    padding-bottom: 30px;
   }
 }
 

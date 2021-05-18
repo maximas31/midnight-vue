@@ -4,21 +4,31 @@
 
     <div class="dropdown-menu__content">
       <div class="dropdown-menu__items-container">
-        <div v-for="(child, index) in children" :key="child.icon" :class="`dropdown-menu__item dropdown-menu__item-${index + 1}`">
+        <div
+          v-for="(child, index) in children"
+          :key="child.icon"
+          :class="`dropdown-menu__item dropdown-menu__item-${index + 1}`"
+        >
           <div class="dropdown-menu__icon">
-            <img :src="`icons/${child.icon}`" :alt="child.title">
+            <img :src="`icons/${child.icon}`" :alt="child.title" />
           </div>
 
           <div class="dropdown-menu__text">
             <div class="dropdown-menu__title">{{ child.title }}</div>
-              
+
             <div class="dropdown-menu__subtitle">{{ child.subtitle }}</div>
           </div>
         </div>
       </div>
 
       <div class="dropdown-menu__links-container" v-if="links.length">
-        <a target="_blank" v-for="link in links" :key="link.text" :href="link.to">{{ link.text }}</a>
+        <a
+          target="_blank"
+          v-for="link in links"
+          :key="link.text"
+          :href="link.to"
+          >{{ link.text }}</a
+        >
       </div>
     </div>
   </div>
@@ -32,11 +42,11 @@ import { Options, Vue } from "vue-class-component";
   props: {
     menuItem: {
       type: Object,
-      required: true
+      required: true,
     },
     isHidden: Boolean,
-    isFaded: Boolean
-  }
+    isFaded: Boolean,
+  },
 })
 export default class DropdownMenu extends Vue {
   public menuItem!: { id: string; items: any[]; links?: any[] };
@@ -61,8 +71,8 @@ export default class DropdownMenu extends Vue {
 
   public get rootClasses(): any {
     return {
-      'display-none': this.isHidden,
-      'dropdown-menu__animation': this.isFaded
+      "display-none": this.isHidden,
+      "dropdown-menu__animation": this.isFaded,
     };
   }
 }
@@ -100,7 +110,8 @@ export default class DropdownMenu extends Vue {
 
   &__content {
     border-radius: 10px;
-    box-shadow: 4px -19px 35px 0 rgba(32, 53, 90, 0.08), 11px 11px 30px -10px rgba(32, 53, 90, 0.15);
+    box-shadow: 4px -19px 35px 0 rgba(32, 53, 90, 0.08),
+      11px 11px 30px -10px rgba(32, 53, 90, 0.15);
   }
 
   &__item {
@@ -137,13 +148,13 @@ export default class DropdownMenu extends Vue {
 
   &__item-4 {
     z-index: 10;
-  } 
+  }
 
   &__icon {
     width: 52px;
     height: 52px;
     padding: 14px;
-    background-color: #F2F2F2;
+    background-color: #f2f2f2;
     border-radius: 10px;
     img {
       width: 100%;
@@ -158,7 +169,7 @@ export default class DropdownMenu extends Vue {
     height: 100%;
   }
 
-  &__title   {
+  &__title {
     margin-bottom: 2px;
     color: #0a083b;
     font-size: 15px;

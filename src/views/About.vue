@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Cate oua are Vova? {{ something }} </h1>
+    <h1>Cate oua are Vova? {{ something }}</h1>
 
     <button @click="onClicked">Castrare</button>
     <!-- <router-link :to="{ name: 'about', params: { something: something > 0 ? something - 1 : 0 } }">Castrare</router-link> -->

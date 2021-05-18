@@ -1,12 +1,12 @@
 <template>
-  <GlobalAlert/>
-  <Header/>
-  <Hero/>
-  <Trust/>
-  <About/>
-  <Testimonial/>
-  <GetStarted/>
-  <Footer/>
+  <GlobalAlert />
+  <Header />
+  <Hero />
+  <Trust />
+  <About />
+  <Testimonial />
+  <GetStarted />
+  <Footer />
 </template>
 
 <script lang="ts">

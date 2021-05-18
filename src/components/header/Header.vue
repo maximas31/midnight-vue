@@ -21,7 +21,7 @@ import Navigation from "./navigation/Navigation.vue";
 @Options({
   components: {
     Navigation,
-  }
+  },
 })
 export default class Header extends Vue {}
 </script>

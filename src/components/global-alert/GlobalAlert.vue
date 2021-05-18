@@ -1,13 +1,15 @@
 <template>
-    <div class="global-alert">
-      <div class="global-alert__container">
-        <div class="global-alert__title">NEW</div>
-        
-        <div class="global-alert__text">Use this space to display important messages.</div>
-        
-        <div class="global-alert__close">x</div>
+  <div class="global-alert">
+    <div class="global-alert__container">
+      <div class="global-alert__title">NEW</div>
+
+      <div class="global-alert__text">
+        Use this space to display important messages.
       </div>
+
+      <div class="global-alert__close">x</div>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,22 +17,22 @@ import { Vue } from "vue-class-component";
 
 export default class GlobalAlert extends Vue {
   public rootNode: Element | null = null;
-  
+
   public closeButtonNode: Element | null = null;
 
   get hiddenClass() {
-    return 'global-alert--hidden';
+    return "global-alert--hidden";
   }
 
   get closeButtonClass() {
-    return 'global-alert__close';
+    return "global-alert__close";
   }
 
   mounted() {
     this.rootNode = document.querySelector(".global-alert");
     this.closeButtonNode = document.querySelector(`.${this.closeButtonClass}`);
 
-    this.init()
+    this.init();
   }
 
   init() {
@@ -38,7 +40,7 @@ export default class GlobalAlert extends Vue {
       return;
     }
 
-    this.closeButtonNode.addEventListener('click', () => this.hide());
+    this.closeButtonNode.addEventListener("click", () => this.hide());
   }
 
   hide() {
@@ -54,13 +56,13 @@ export default class GlobalAlert extends Vue {
 <style scoped lang="scss">
 .global-alert {
   width: 100%;
-  background-color: #0A083B;
+  background-color: #0a083b;
   color: white;
   text-align: center;
   height: 50px;
 
   &--hidden {
-    animation: hide-global-alert .4s 1 ease-in-out; 
+    animation: hide-global-alert 0.4s 1 ease-in-out;
     animation-fill-mode: forwards;
   }
 

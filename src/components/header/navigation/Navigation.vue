@@ -1,7 +1,18 @@
 <template>
   <nav class="navigation header__navigation">
-    <MenuItem v-for="(item, index) in navigationItems" :key="item.id" :item="item" @mouseenter="showDropdownMenu(index)" @mouseleave="hideDropdownMenu(index)">
-      <DropdownMenu v-if="hasChildren(item)" :menu-item="item" :is-hidden="getVisibilityByIndex(index).isHidden" :is-faded="getVisibilityByIndex(index).isFaded" />
+    <MenuItem
+      v-for="(item, index) in navigationItems"
+      :key="item.id"
+      :item="item"
+      @mouseenter="showDropdownMenu(index)"
+      @mouseleave="hideDropdownMenu(index)"
+    >
+      <DropdownMenu
+        v-if="hasChildren(item)"
+        :menu-item="item"
+        :is-hidden="getVisibilityByIndex(index).isHidden"
+        :is-faded="getVisibilityByIndex(index).isFaded"
+      />
     </MenuItem>
   </nav>
 </template>
@@ -17,7 +28,7 @@ import { DropdownMenu } from "./dropdown-menu";
   components: {
     MenuItem,
     DropdownMenu,
-  }
+  },
 })
 export default class Navigation extends Vue {
   public timer: any = null;
@@ -35,24 +46,24 @@ export default class Navigation extends Vue {
           {
             icon: "home.svg",
             title: "Homepage",
-            subtitle: "Get to know Midnight Theme"
-          }, 
+            subtitle: "Get to know Midnight Theme",
+          },
           {
             icon: "faq.svg",
             title: "How It Works",
-            subtitle: "Learn how Midnight can help"
+            subtitle: "Learn how Midnight can help",
           },
           {
             icon: "price.svg",
             title: "Pricing & FAQ",
-            subtitle: "Find the right plan for you"
+            subtitle: "Find the right plan for you",
           },
           {
             icon: "contact.svg",
             title: "Contact",
-            subtitle: "Get in touch with our team"
+            subtitle: "Get in touch with our team",
           },
-        ]
+        ],
       },
       {
         id: "company",
@@ -61,39 +72,43 @@ export default class Navigation extends Vue {
           {
             icon: "group.svg",
             title: "About us",
-            subtitle: "Get to know our team and mission"
-          }, 
+            subtitle: "Get to know our team and mission",
+          },
           {
             icon: "blog.svg",
             title: "Blog",
-            subtitle: "Read our amazing articles"
-          }
+            subtitle: "Read our amazing articles",
+          },
         ],
         links: [
           {
             text: "Privacy Policy",
-            to: "https://google.com"
+            to: "https://google.com",
           },
           {
             text: "Terms of Service",
-            to: "https://google.com"
-          }
-        ]
+            to: "https://google.com",
+          },
+        ],
       },
       {
         id: "blog",
         name: "Blog",
-        items: []
+        items: [],
       },
       {
         id: "contact",
         name: "Contact",
-        items: []
-      }
-    ]
+        items: [],
+      },
+    ];
   }
 
-  public hasChildren(item: { id: string; items: any[]; links?: any[] }): boolean {
+  public hasChildren(item: {
+    id: string;
+    items: any[];
+    links?: any[];
+  }): boolean {
     return !!item.items.length;
   }
 
@@ -102,24 +117,29 @@ export default class Navigation extends Vue {
 
     this.dropdownVisibility[index] = {
       isHidden: false,
-      isFaded: true
-    }
-    
-    this.timer = setTimeout(() => this.dropdownVisibility[index].isFaded = false, 10);
+      isFaded: true,
+    };
+
+    this.timer = setTimeout(
+      () => (this.dropdownVisibility[index].isFaded = false),
+      10
+    );
   }
 
   public hideDropdownMenu(index: number) {
     this.dropdownVisibility[index] = {
       isHidden: true,
-      isFaded: true
+      isFaded: true,
     };
   }
 
   public getVisibilityByIndex(index: number): any {
-    return this.dropdownVisibility[index] || {
-      isHidden: true,
-      isFaded: true
-    };
+    return (
+      this.dropdownVisibility[index] || {
+        isHidden: true,
+        isFaded: true,
+      }
+    );
   }
 }
 </script>

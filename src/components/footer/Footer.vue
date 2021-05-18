@@ -3,27 +3,53 @@
     <div class="container">
       <GetEmail />
 
-      <hr noshade class="footer__divider">
+      <hr noshade class="footer__divider" />
 
       <section class="footer__bottom">
         <div>
-          <img src="img/logo-footer.jpg" alt="logo-footer" class="footer__logo">
+          <img
+            src="img/logo-footer.jpg"
+            alt="logo-footer"
+            class="footer__logo"
+          />
 
-          <div class="footer__credits">Designed and developed by <a href="">Flowyak</a> |<br>Powered by <a
-              href="">Webflow</a></div>
+          <div class="footer__credits">
+            Designed and developed by <a href="">Flowyak</a> |<br />Powered by
+            <a href="">Webflow</a>
+          </div>
           <div class="footer__social-icons">
-            <a href="#"><img src="img/facebook.png" alt="facebook" class="footer__social-icon"></a>
+            <a href="#"
+              ><img
+                src="img/facebook.png"
+                alt="facebook"
+                class="footer__social-icon"
+            /></a>
 
-            <a href="#"><img src="img/instagram.png" alt="instagram" class="footer__social-icon"></a>
+            <a href="#"
+              ><img
+                src="img/instagram.png"
+                alt="instagram"
+                class="footer__social-icon"
+            /></a>
 
-            <a href="#"><img src="img/twitter.png" alt="twitter" class="footer__social-icon"></a>
+            <a href="#"
+              ><img
+                src="img/twitter.png"
+                alt="twitter"
+                class="footer__social-icon"
+            /></a>
           </div>
         </div>
 
         <div v-for="menuSection in menuSections" :key="menuSection[0]">
           <div class="footer__title">{{ menuSection[0] }}</div>
 
-          <a class="footer__link" href="#" v-for="link in menuSection[1]" :key="link">
+          <a
+            class="footer__link"
+            href="#"
+            v-for="link in menuSection[1]"
+            :key="link"
+          >
             {{ link }}
           </a>
         </div>
@@ -39,16 +65,16 @@ import GetEmail from "./GetEmail.vue";
 
 @Options({
   components: {
-    GetEmail
-  }
+    GetEmail,
+  },
 })
 export default class Footer extends Vue {
   get menuSections() {
     return [
       ["PRODUCT", ["Home", "How it works", "Pricing & FAQs"]],
       ["RESOURCES", ["Blog", "Contact", "Licensing"]],
-      ["COMPANY", ["About us", "Privacy Policy", "Terms of Service"]]
-    ]
+      ["COMPANY", ["About us", "Privacy Policy", "Terms of Service"]],
+    ];
   }
 }
 </script>

@@ -25,14 +25,17 @@
               <span>No One Ever</span><br />CEO & Founder
             </div>
             <div class="testimonial__logo">
-              <img src="img/small_logo1.png" alt="small-logo1"/>
+              <img src="img/small_logo1.png" alt="small-logo1" />
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <Modal v-show="showModal" :show-modal="showModal" @closeModal="onClose" />
+
+  <Transition name="fade" mode="out-in">
+    <Modal v-if="showModal" @close-clicked="onModalCloseClicked" />
+  </Transition>
 </template>
 
 <script lang="ts">
@@ -42,13 +45,13 @@ import Modal from "./Modal.vue";
 @Options({
   name: "Testimonial",
   components: {
-    Modal
-  }
+    Modal,
+  },
 })
 export default class Testimonial extends Vue {
   public showModal = false;
 
-  onClose() {
+  public onModalCloseClicked() {
     this.showModal = false;
   }
 }
@@ -127,6 +130,19 @@ export default class Testimonial extends Vue {
     img {
       width: 100%;
     }
+  }
+}
+
+.fade {
+  &-enter-active {
+    transition: opacity 0.8s ease;
+  }
+  &-leave-active {
+    transition: opacity 200ms ease-in;
+  }
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
   }
 }
 </style>

@@ -2,15 +2,17 @@
   <section class="get-email">
     <div class="get-email__subheading">WE CAN HELP YOU GROW YOUR BUSINESS</div>
 
-    <h2 class="get-email__heading">Stay updated on our weekly sales and marketing guides.</h2>
+    <h2 class="get-email__heading">
+      Stay updated on our weekly sales and marketing guides.
+    </h2>
 
     <form>
       <div class="get-email__text">EMAIL ADDRESS:</div>
 
       <div class="get-email__input-wrapper">
-        <input type="email" class="get-email__input">
+        <input type="email" class="get-email__input" />
 
-        <input type="submit" class="get-email__submit" value="">
+        <input type="submit" class="get-email__submit" value="" />
       </div>
     </form>
   </section>
@@ -32,13 +34,13 @@
   }
 
   &__heading {
-      max-width: 700px;
-      margin-top: 20px;
-      font-size: 50px;
-      line-height: 1.2;
-      margin-bottom: 45px;
-      color: #fff;
-      font-weight: 600;
+    max-width: 700px;
+    margin-top: 20px;
+    font-size: 50px;
+    line-height: 1.2;
+    margin-bottom: 45px;
+    color: #fff;
+    font-weight: 600;
   }
 
   &__text {
@@ -53,7 +55,7 @@
     justify-content: flex-start;
     align-items: flex-start;
   }
-  
+
   &__input {
     width: 480px;
     border-style: none none solid;
@@ -68,12 +70,12 @@
     color: #333333;
 
     &:focus {
-      border-color: #3898EC;
+      border-color: #3898ec;
     }
   }
 
   &__submit {
-    background-image: url('/img/arrow.png');
+    background-image: url("/img/arrow.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-color: transparent;
@@ -99,18 +101,14 @@ export default class GetEmail extends Vue {
   // render() {
   //   const html = `
   //   // <div class="get-email__subheading">WE CAN HELP YOU GROW YOUR BUSINESS</div>
-
   //   // <h2 class="get-email__heading">Stay updated on our weekly sales and marketing guides.</h2>
-
   //   // <form>
   //   //   <div class="get-email__text">EMAIL ADDRESS:</div>
-
   //   //   <div class="get-email__input-wrapper">
   //   //     <input type="email" class="get-email__input">
   //   //     <input type="submit" class="get-email__submit" value="">
   //   //   </div>
   //   // </form>`;
-
   //   // this.rootNode.innerHTML = html;
   // }
 }

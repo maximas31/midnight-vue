@@ -14,9 +14,9 @@ import { Options, Vue } from "vue-class-component";
   props: {
     item: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 export default class TabItem extends Vue {}
 </script>
